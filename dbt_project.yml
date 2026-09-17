@@ -46,3 +46,6 @@ models:
 
     gold:
       +database: "ADW_GOLD_{{ target.name | upper }}"
+
+    platinum:
+      +database: "ADW_PLATINUM_{{ target.name | upper }}"
