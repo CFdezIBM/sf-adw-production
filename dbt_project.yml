@@ -36,7 +36,13 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  my_new_project:
-    # Applies to all files under models/example/
-    example:
-      +materialized: table
+  ADW_PRODUCTION:
+
+    bronze:
+      +database: "ADW_BRONZE_{{ target.name | upper }}"
+
+    silver:
+      +database: "ADW_SILVER_{{ target.name | upper }}"
+
+    gold:
+      +database: "ADW_GOLD_{{ target.name | upper }}"
