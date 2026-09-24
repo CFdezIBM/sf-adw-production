@@ -8,7 +8,7 @@ version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'dev'
+profile: 'ADW_PRODUCTION'
 
 
 # These configurations specify where dbt should look for different types of files.
@@ -38,7 +38,27 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  my_new_project:
-    # Applies to all files under models/example/
-    example:
+  ADW_PRODUCTION:
+    bronze:
+      +database: "{{ env_var('DBT_DB_ADW_BRONZE') }}"
+      +schema: SOURCE
+      +materialized: view
+      +tags: ["bronze"]
+
+    silver:
+      +database: "{{ env_var('DBT_DB_ADW_SILVER') }}"
+      +schema: PRODUCTION
       +materialized: table
+      +tags: ["silver"]
+
+    gold:
+      +database: "{{ env_var('DBT_DB_ADW_GOLD') }}"
+      +schema: PRODUCTION
+      +materialized: view
+      +tags: ["gold"]
+
+    platinum:
+      +database: "{{ env_var('DBT_DB_ADW_PLATINUM') }}"
+      +schema: PRODUCTION
+      +materialized: view
+      +tags: ["platinum"]
