@@ -39,9 +39,13 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   ADW_PRODUCTION:
+
+  
+    +group: production
+    
     bronze:
       +database: "{{ env_var('DBT_DB_ADW_BRONZE') }}"
-      +schema: SOURCE
+      +schema: PRODUCTION
       +materialized: view
       +tags: ["bronze"]
 
