@@ -1,0 +1,6 @@
+version: 2
+
+groups:
+  - name: production
+    owner:
+      name: Production Team
