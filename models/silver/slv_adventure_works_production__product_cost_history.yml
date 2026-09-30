@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__product_cost_history
+    description: >
+      Historial estandarizado del costo de los productos de AdventureWorks.
+      Conserva los periodos de vigencia y el costo estándar correspondiente
+      a cada producto.
+
+    columns:
+      - name: product_id
+        description: >
+          Identificador del producto al que pertenece el costo histórico.
+
+      - name: start_date
+        description: >
+          Fecha y hora desde la cual el costo estándar entra en vigencia.
+
+      - name: end_date
+        description: >
+          Fecha y hora hasta la cual el costo estándar estuvo vigente.
+          Puede ser nula cuando el costo continúa vigente.
+
+      - name: standard_cost
+        description: >
+          Costo estándar del producto durante el periodo de vigencia.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.
