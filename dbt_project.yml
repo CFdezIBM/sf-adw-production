@@ -40,6 +40,10 @@ models:
 
   
     +group: production
+
+    +persist_docs:
+      relation: true
+      columns: true
     
     bronze:
       +database: "{{ env_var('DBT_DB_ADW_BRONZE') }}"
