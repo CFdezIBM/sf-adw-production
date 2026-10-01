@@ -1,0 +1,113 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__product
+    description: >
+      Catálogo maestro de productos de AdventureWorks con tipos estandarizados.
+      Incluye atributos comerciales, físicos y de costo, además de la ventana
+      de venta. Grano: una fila por producto.
+
+    columns:
+      - name: product_id
+        description: >
+          Identificador único del producto.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: name
+        description: >
+          Nombre comercial del producto.
+
+      - name: product_number
+        description: >
+          Código del producto usado en catálogos y documentos.
+
+      - name: make_flag
+        description: >
+          Verdadero cuando el producto se fabrica internamente, falso cuando se compra.
+
+      - name: finished_goods_flag
+        description: >
+          Verdadero cuando el producto es vendible, falso cuando es un componente.
+
+      - name: color
+        description: >
+          Color del producto. Nulo cuando no aplica.
+
+      - name: safety_stock_level
+        description: >
+          Nivel mínimo de inventario de seguridad.
+
+      - name: reorder_point
+        description: >
+          Nivel de inventario que dispara la reposición.
+
+      - name: standard_cost
+        description: >
+          Costo estándar del producto.
+
+      - name: list_price
+        description: >
+          Precio de lista vigente del producto.
+
+      - name: size
+        description: >
+          Talla o tamaño del producto, expresado en size_unit_measure_code.
+
+      - name: size_unit_measure_code
+        description: >
+          Unidad de medida del tamaño.
+
+      - name: weight_unit_measure_code
+        description: >
+          Unidad de medida del peso.
+
+      - name: weight
+        description: >
+          Peso del producto, expresado en weight_unit_measure_code.
+
+      - name: days_to_manufacture
+        description: >
+          Días necesarios para fabricar el producto.
+
+      - name: product_line
+        description: >
+          Línea de producto: R (Road), M (Mountain), T (Touring), S (Standard).
+
+      - name: class
+        description: >
+          Clasificación de calidad: H (alta), M (media), L (baja).
+
+      - name: style
+        description: >
+          Estilo del producto: W (mujer), M (hombre), U (universal).
+
+      - name: product_subcategory_id
+        description: >
+          Identificador de la subcategoría del producto.
+
+      - name: product_model_id
+        description: >
+          Identificador del modelo de producto.
+
+      - name: sell_start_date
+        description: >
+          Fecha desde la cual el producto está disponible para la venta.
+
+      - name: sell_end_date
+        description: >
+          Fecha en que el producto dejó de venderse. Nula mientras sigue a la venta.
+          Actualmente siempre es nula: la fuente entrega 0 en lugar de la fecha real.
+
+      - name: discontinued_date
+        description: >
+          Fecha en que el producto fue descontinuado. Nula cuando no fue descontinuado.
+
+      - name: rowguid
+        description: >
+          Identificador global único (GUID) usado por el sistema origen para replicación.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.
