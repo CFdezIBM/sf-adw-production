@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__scrap_reason
+    description: >
+      Silver layer model for the Scrap Reason entity. Contains the catalog of
+      reasons used to classify scrapped or rejected manufacturing work orders
+      in the AdventureWorks Production domain. The grain is one row per
+      scrap reason.
+
+    columns:
+
+      - name: scrap_reason_id
+        description: "Primary key. Unique identifier for each scrap reason."
+        tests:
+          - not_null
+          - unique
+
+      - name: name
+        description: "Descriptive name of the scrap reason (e.g. 'Drill size too large', 'Trim length too long')."
+        tests:
+          - not_null
+
+      - name: modified_date
+        description: "Timestamp of the last modification of the record."
+        tests:
+          - not_null
+
