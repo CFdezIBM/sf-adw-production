@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__product_inventory
+    description: >
+      Inventario disponible de AdventureWorks por producto y ubicación,
+      incluyendo su posición física en el almacén.
+      Grano: producto + ubicación.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: "concat_ws('|', product_id, location_id)"
+
+    columns:
+      - name: product_id
+        description: >
+          Producto en inventario.
+        data_tests:
+          - not_null
+
+      - name: location_id
+        description: >
+          Ubicación donde se almacena el producto.
+        data_tests:
+          - not_null
+
+      - name: shelf
+        description: >
+          Estante donde se almacena el producto.
+
+      - name: bin
+        description: >
+          Contenedor dentro del estante.
+
+      - name: quantity
+        description: >
+          Unidades disponibles en esa ubicación.
+
+      - name: rowguid
+        description: >
+          Identificador global único (GUID) usado por el sistema origen para replicación.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.
