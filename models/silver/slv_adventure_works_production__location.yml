@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__location
+    description: >
+      Catálogo estandarizado de ubicaciones de inventario y fabricación dentro
+      de la planta de AdventureWorks. Grano: una fila por ubicación.
+
+    columns:
+      - name: location_id
+        description: >
+          Identificador único de la ubicación.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: name
+        description: >
+          Nombre de la ubicación (por ejemplo Tool Crib, Paint Shop).
+
+      - name: cost_rate
+        description: >
+          Costo por hora de usar la ubicación en fabricación.
+
+      - name: availability
+        description: >
+          Capacidad disponible de la ubicación, en horas.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.
