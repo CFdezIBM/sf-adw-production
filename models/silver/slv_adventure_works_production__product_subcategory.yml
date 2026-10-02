@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__product_subcategory
+    description: >
+      Catálogo estandarizado de subcategorías de productos de AdventureWorks.
+      Cada subcategoría pertenece a una categoría de producto.
+
+    columns:
+      - name: product_subcategory_id
+        description: >
+          Identificador único de la subcategoría de producto.
+
+      - name: product_category_id
+        description: >
+          Identificador de la categoría a la que pertenece la subcategoría.
+
+      - name: name
+        description: >
+          Nombre de la subcategoría de producto.
+
+      - name: rowguid
+        description: >
+          Identificador global único (GUID) del registro.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.
