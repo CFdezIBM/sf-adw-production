@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__product_description
+    description: >
+      Descripciones estandarizadas de productos de AdventureWorks.
+
+    columns:
+      - name: product_description_id
+        description: >
+          Identificador único de la descripción de producto.
+
+      - name: description
+        description: >
+          Texto descriptivo del producto.
+
+      - name: rowguid
+        description: >
+          Identificador global único (GUID) del registro.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.

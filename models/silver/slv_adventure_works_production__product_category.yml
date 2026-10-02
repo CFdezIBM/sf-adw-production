@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__product_category
+    description: >
+      Catálogo estandarizado de categorías de productos de AdventureWorks.
+
+    columns:
+      - name: product_category_id
+        description: >
+          Identificador único de la categoría de producto.
+
+      - name: name
+        description: >
+          Nombre de la categoría de producto.
+
+      - name: rowguid
+        description: >
+          Identificador global único (GUID) del registro.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.

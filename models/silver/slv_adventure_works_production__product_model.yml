@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__product_model
+    description: >
+      Catálogo estandarizado de modelos de productos de AdventureWorks.
+      Conserva la descripción de catálogo y las instrucciones de fabricación
+      como texto.
+
+    columns:
+      - name: product_model_id
+        description: >
+          Identificador único del modelo de producto.
+
+      - name: name
+        description: >
+          Nombre del modelo de producto.
+
+      - name: catalog_description
+        description: >
+          Descripción detallada del modelo para el catálogo, almacenada como texto.
+
+      - name: instructions
+        description: >
+          Instrucciones de fabricación del modelo, almacenadas como texto.
+
+      - name: rowguid
+        description: >
+          Identificador global único (GUID) del registro.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.

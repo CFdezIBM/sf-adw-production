@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__bill_of_materials
+    description: >
+      Lista de materiales estandarizada de AdventureWorks. Relaciona cada
+      ensamble con los componentes que lo conforman, la cantidad requerida
+      y su periodo de vigencia.
+
+    columns:
+      - name: bill_of_materials_id
+        description: >
+          Identificador único del registro de la lista de materiales.
+
+      - name: product_assembly_id
+        description: >
+          Identificador del producto padre (ensamble). Puede ser nulo cuando
+          el componente es de nivel superior.
+
+      - name: component_id
+        description: >
+          Identificador del producto componente que forma parte del ensamble.
+
+      - name: start_date
+        description: >
+          Fecha y hora desde la cual el componente forma parte del ensamble.
+
+      - name: end_date
+        description: >
+          Fecha y hora hasta la cual el componente formó parte del ensamble.
+          Puede ser nula cuando la relación continúa vigente. Temporalmente,
+          también es nula en registros cuyo valor en origen llegó sin fecha
+          (solo '00:00:00').
+
+      - name: unit_measure_code
+        description: >
+          Código de la unidad de medida en la que se expresa la cantidad.
+
+      - name: bomlevel
+        description: >
+          Nivel del componente dentro de la jerarquía del ensamble.
+
+      - name: per_assembly_qty
+        description: >
+          Cantidad del componente requerida para fabricar una unidad del ensamble.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.
