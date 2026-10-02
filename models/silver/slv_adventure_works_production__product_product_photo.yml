@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__product_product_photo
+    description: >
+      Silver layer model for the Product Product Photo entity. Represents the
+      relationship between products and their associated photos in the
+      AdventureWorks Production domain. The grain is one row per product
+      and product photo combination.
+
+    columns:
+
+      - name: product_id
+        description: "Foreign key to the Product entity. Identifies the product associated with the photo."
+        tests:
+          - not_null
+
+      - name: product_photo_id
+        description: "Foreign key to the Product Photo entity. Identifies the photo associated with the product."
+        tests:
+          - not_null
+
+      - name: primary
+        description: "Boolean flag indicating whether this is the primary photo for the product."
+        tests:
+          - not_null
+
+      - name: modified_date
+        description: "Timestamp of the last modification of the record."
+        tests:
+          - not_null
+

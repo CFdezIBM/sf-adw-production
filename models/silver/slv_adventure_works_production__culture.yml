@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__culture
+    description: >
+      Silver layer model for the Culture entity. Contains the list of cultures
+      and languages used to associate product descriptions in the AdventureWorks
+      Production domain. No rows are filtered; the grain is one row per culture.
+
+    columns:
+
+      - name: culture_id
+        description: "Primary key. Short code that uniquely identifies a culture or language (e.g. 'en', 'fr')."
+        tests:
+          - not_null
+          - unique
+
+      - name: name
+        description: "Full name of the culture or language (e.g. 'English', 'French')."
+        tests:
+          - not_null
+
+      - name: modified_date
+        description: "Timestamp of the last modification of the record. Cast to TIMESTAMP_NTZ in Silver."
+        tests:
+          - not_null

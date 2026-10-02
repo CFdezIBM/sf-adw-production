@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__product_document
+    description: >
+      Silver layer model for the Product Document entity. Represents the
+      relationship between products and their associated documents in the
+      AdventureWorks Production domain. The grain is one row per
+      product and document node combination.
+
+    columns:
+
+      - name: product_id
+        description: "Foreign key to the Product entity. Identifies the product associated with the document."
+        tests:
+          - not_null
+
+      - name: document_node
+        description: "Foreign key to the Document entity. Identifies the document associated with the product."
+        tests:
+          - not_null
+
+      - name: modified_date
+        description: "Timestamp of the last modification of the record."
+        tests:
+          - not_null
+
+          

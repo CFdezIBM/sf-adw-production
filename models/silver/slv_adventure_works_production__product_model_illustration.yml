@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__product_model_illustration
+    description: >
+      Silver layer model for the Product Model Illustration entity. Represents
+      the relationship between product models and their associated illustrations
+      in the AdventureWorks Production domain. The grain is one row per
+      product model and illustration combination.
+
+    columns:
+
+      - name: product_model_id
+        description: "Foreign key to the Product Model entity. Identifies the product model associated with the illustration."
+        tests:
+          - not_null
+
+      - name: illustration_id
+        description: "Foreign key to the Illustration entity. Identifies the illustration associated with the product model."
+        tests:
+          - not_null
+
+      - name: modified_date
+        description: "Timestamp of the last modification of the record."
+        tests:
+          - not_null
+

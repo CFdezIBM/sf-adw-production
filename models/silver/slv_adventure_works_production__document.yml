@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__document
+    description: >
+      Silver layer model for the Document entity. Stores the document hierarchy
+      used to manage product-related files and folders in the AdventureWorks
+      Production domain. The grain is one row per document node.
+
+    columns:
+
+      - name: document_node
+        description: "Primary key. Hierarchical identifier that represents the position of the document in the folder tree."
+        tests:
+          - not_null
+          - unique
+
+      - name: document_level
+        description: "Depth level of the document node within the hierarchy. Derived from the document_node path."
+        tests:
+          - not_null
+
+      - name: title
+        description: "Title or name of the document."
+        tests:
+          - not_null
+
+      - name: owner
+        description: "Foreign key to the employee who owns this document."
+        tests:
+          - not_null
+
+      - name: folder_flag
+        description: "Boolean flag indicating whether the row represents a folder (true) or a file (false)."
+        tests:
+          - not_null
+
+      - name: file_name
+        description: "File name of the document, excluding extension. Null for folder nodes."
+
+      - name: file_extension
+        description: "File extension of the document (e.g. '.doc', '.pdf'). Null for folder nodes."
+
+      - name: revision
+        description: "Revision number of the document. Cast to VARCHAR(5) in Silver."
+
+      - name: change_number
+        description: "Sequential number tracking the number of changes applied to this document."
+        tests:
+          - not_null
+
+      - name: status
+        description: "Current status of the document."
+        tests:
+          - not_null
+
+      - name: document_summary
+        description: "Optional plain-text summary describing the content of the document."
+
+      - name: rowguid
+        description: "Globally unique identifier (GUID) for the row. Used for replication."
+        tests:
+          - not_null
+          - unique
+
+      - name: modified_date
+        description: "Timestamp of the last modification of the record. Maintained as TIMESTAMP_NTZ from Bronze."
+        tests:
+          - not_null
+          

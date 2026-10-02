@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__product_model_product_description_culture
+    description: >
+      Silver layer model for the Product Model Product Description Culture entity.
+      Represents the relationship between product models, their descriptions, and
+      the culture or language in which each description is written in the
+      AdventureWorks Production domain. The grain is one row per product model,
+      product description, and culture combination.
+
+    columns:
+
+      - name: product_model_id
+        description: "Foreign key to the Product Model entity. Identifies the product model associated with the description."
+        tests:
+          - not_null
+
+      - name: product_description_id
+        description: "Foreign key to the Product Description entity. Identifies the description associated with the product model."
+        tests:
+          - not_null
+
+      - name: culture_id
+        description: "Foreign key to the Culture entity. Identifies the language or culture of the product description."
+        tests:
+          - not_null
+
+      - name: modified_date
+        description: "Timestamp of the last modification of the record."
+        tests:
+          - not_null
+          
