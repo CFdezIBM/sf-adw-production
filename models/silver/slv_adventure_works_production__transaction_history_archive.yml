@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__transaction_history_archive
+    description: >
+      Historial archivado de transacciones de inventario y producción de
+      AdventureWorks. Conserva el mismo grano y estructura que
+      transaction_history, para transacciones ya archivadas.
+
+    columns:
+      - name: transaction_id
+        description: >
+          Identificador único de la transacción archivada.
+
+      - name: product_id
+        description: >
+          Identificador del producto asociado a la transacción.
+
+      - name: reference_order_id
+        description: >
+          Identificador de la orden de referencia relacionada con la transacción.
+
+      - name: reference_order_line_id
+        description: >
+          Identificador de la línea específica dentro de la orden de referencia.
+
+      - name: transaction_date
+        description: >
+          Fecha y hora en que ocurrió la transacción.
+
+      - name: transaction_type
+        description: >
+          Tipo de transacción (por ejemplo, compra, venta o ensamblaje).
+
+      - name: quantity
+        description: >
+          Cantidad de unidades involucradas en la transacción.
+
+      - name: actual_cost
+        description: >
+          Costo real asociado a la transacción.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.

@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__work_order_routing
+    description: >
+      Ruta de fabricación de cada orden de trabajo de AdventureWorks: una fila
+      por operación, con costos y fechas planificados frente a reales.
+      Grano: orden de trabajo + producto + secuencia de operación.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: "concat_ws('|', work_order_id, product_id, operation_sequence)"
+
+    columns:
+      - name: work_order_id
+        description: >
+          Orden de trabajo a la que pertenece la operación.
+        data_tests:
+          - not_null
+
+      - name: product_id
+        description: >
+          Producto que se fabrica.
+        data_tests:
+          - not_null
+
+      - name: operation_sequence
+        description: >
+          Número de secuencia de la operación dentro de la ruta de fabricación.
+        data_tests:
+          - not_null
+
+      - name: location_id
+        description: >
+          Ubicación de la planta donde se realiza la operación.
+
+      - name: scheduled_start_date
+        description: >
+          Fecha planificada de inicio de la operación.
+
+      - name: scheduled_end_date
+        description: >
+          Fecha planificada de fin de la operación.
+
+      - name: actual_start_date
+        description: >
+          Fecha real de inicio de la operación.
+
+      - name: actual_end_date
+        description: >
+          Fecha real de fin de la operación.
+
+      - name: actual_resource_hrs
+        description: >
+          Horas de recurso efectivamente consumidas por la operación.
+
+      - name: planned_cost
+        description: >
+          Costo planificado de la operación.
+
+      - name: actual_cost
+        description: >
+          Costo real de la operación.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.

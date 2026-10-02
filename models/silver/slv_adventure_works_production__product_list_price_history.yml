@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__product_list_price_history
+    description: >
+      Historial de precios de lista de los productos de AdventureWorks.
+      Conserva los periodos de vigencia y el precio de lista correspondiente
+      a cada producto.
+
+    columns:
+      - name: product_id
+        description: >
+          Identificador del producto al que pertenece el precio histórico.
+
+      - name: start_date
+        description: >
+          Fecha y hora desde la cual el precio de lista entra en vigencia.
+
+      - name: end_date
+        description: >
+          Fecha y hora hasta la cual el precio de lista estuvo vigente.
+          Puede ser nula cuando el precio continúa vigente.
+
+      - name: list_price
+        description: >
+          Precio de lista del producto durante el periodo de vigencia.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.

@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: slv_adventure_works_production__unit_measure
+    description: >
+      Catálogo estandarizado de unidades de medida de AdventureWorks.
+
+    columns:
+      - name: unit_measure_code
+        description: >
+          Código único de la unidad de medida.
+
+      - name: name
+        description: >
+          Nombre descriptivo de la unidad de medida.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.
