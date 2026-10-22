@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: slv_dim_adventure_works_production__product_join_category_model
+    description: >
+      Producto enriquecido con su categoría, subcategoría y modelo, como insumo de
+      DIM_PRODUCT en Gold. Se excluyen standard_cost y list_price porque su historial
+      vive en FACT_PRODUCT_COST_HISTORY y FACT_PRODUCT_LIST_PRICE_HISTORY. Grano: una
+      fila por producto.
+
+    columns:
+      - name: product_id
+        description: >
+          Identificador único del producto (clave natural).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: product_name
+        description: >
+          Nombre comercial del producto.
+
+      - name: product_number
+        description: >
+          Código del producto usado en catálogos y documentos.
+
+      - name: category_name
+        description: >
+          Nombre de la categoría del producto. Nulo cuando el producto no tiene subcategoría.
+
+      - name: subcategory_name
+        description: >
+          Nombre de la subcategoría del producto. Nulo cuando el producto no tiene subcategoría.
+
+      - name: model_name
+        description: >
+          Nombre del modelo del producto. Nulo cuando el producto no tiene modelo.
+
+      - name: make_flag
+        description: >
+          Verdadero cuando el producto se fabrica internamente, falso cuando se compra.
+
+      - name: finished_goods_flag
+        description: >
+          Verdadero cuando el producto es vendible, falso cuando es un componente.
+
+      - name: reorder_point
+        description: >
+          Nivel de inventario que dispara la reposición.
+
+      - name: product_modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el producto.
