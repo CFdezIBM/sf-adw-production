@@ -1,7 +1,9 @@
 snapshots:
   - name: gld_dim_product
+    description: "Dimensión de producto Type 2. Una fila por versión de cada producto; la versión vigente tiene product_valid_to nulo."
     relation: ref('slv_dim_adventure_works_production__product_join_category_model')
     config:
+      alias: dim_product
       database: "{{ env_var('DBT_DB_ADW_GOLD') }}"
       schema: PRODUCTION
       unique_key: product_id
@@ -15,5 +17,51 @@ snapshots:
         - make_flag
         - finished_goods_flag
         - reorder_point
+      hard_deletes: invalidate
+      persist_docs:
+        relation: true
+        columns: true
       snapshot_meta_column_names:
         dbt_scd_id: product_key
+        dbt_valid_from: product_valid_from
+        dbt_valid_to: product_valid_to
+        dbt_updated_at: product_updated_at
+      post_hook:
+        - "{{ upsert_default_rows('product_key') }}"
+
+    columns:
+      - name: product_key
+        description: "Surrogate key de la versión del producto (una por cada versión)."
+        data_tests:
+          - unique
+          - not_null
+      - name: product_id
+        description: "Clave natural del producto en AdventureWorks."
+        data_tests:
+          - not_null
+      - name: product_name
+        description: "Nombre del producto."
+      - name: product_number
+        description: "Número de producto."
+      - name: category_name
+        description: "Nombre de la categoría del producto."
+      - name: subcategory_name
+        description: "Nombre de la subcategoría del producto."
+      - name: model_name
+        description: "Nombre del modelo del producto."
+      - name: make_flag
+        description: "Indica si el producto se fabrica internamente."
+      - name: finished_goods_flag
+        description: "Indica si el producto es un bien terminado."
+      - name: reorder_point
+        description: "Nivel de inventario que dispara una nueva orden de compra."
+      - name: product_modified_date
+        description: "Fecha de última modificación del producto en el origen."
+      - name: product_valid_from
+        description: "Inicio de vigencia de esta versión."
+        data_tests:
+          - not_null
+      - name: product_valid_to
+        description: "Fin de vigencia de esta versión; nulo indica la versión actual."
+      - name: product_updated_at
+        description: "Momento en que dbt detectó esta versión."
