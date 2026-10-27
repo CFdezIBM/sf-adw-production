@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: gld_dim_location
+    description: >
+      Dimensión de ubicaciones de inventario y fabricación de AdventureWorks
+      (Type 1: se sobrescribe, sin historia). Grano: una fila por ubicación.
+      Incluye 2 filas por defecto (-1 Missing y -2 Not Applicable), añadidas
+      por upsert_default_rows en el post_hook, para que los hechos con
+      ubicación desconocida sigan uniéndose.
+
+    columns:
+      - name: location_key
+        description: >
+          Surrogate key de la ubicación, generada en Gold a partir de
+          location_id. En las filas por defecto toma el valor de texto
+          Missing / Not Applicable.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: location_id
+        description: >
+          Clave natural de la ubicación en AdventureWorks. Es -1 y -2 en las
+          filas por defecto.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: location_name
+        description: >
+          Nombre de la ubicación (por ejemplo Tool Crib, Paint Shop).
+
+      - name: cost_rate
+        description: >
+          Costo por hora de usar la ubicación en fabricación.
+
+      - name: availability
+        description: >
+          Capacidad disponible de la ubicación, en horas.
+
+      - name: location_modified_date
+        description: >
+          Fecha y hora de la última modificación del registro en el origen.
+          Columna de auditoría; podría eliminarse más adelante.
