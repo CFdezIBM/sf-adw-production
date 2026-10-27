@@ -1,0 +1,19 @@
+snapshots:
+  - name: gld_dim_product
+    relation: ref('slv_dim_adventure_works_production__product_join_category_model')
+    config:
+      database: "{{ env_var('DBT_DB_ADW_GOLD') }}"
+      schema: PRODUCTION
+      unique_key: product_id
+      strategy: check
+      check_cols:
+        - product_name
+        - product_number
+        - category_name
+        - subcategory_name
+        - model_name
+        - make_flag
+        - finished_goods_flag
+        - reorder_point
+      snapshot_meta_column_names:
+        dbt_scd_id: product_key
