@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: gld_dim_product
+    description: >
+      Dimensión de productos de AdventureWorks (Type 2). Vista pública sobre
+      el snapshot snp_dim_product: una fila por versión de cada producto, con
+      su vigencia en product_valid_from y product_valid_to (nulo en la versión
+      actual). Incluye 2 filas por defecto (-1 Missing y -2 Not Applicable),
+      con vigencia 1900-01-01, que no encajan en filtros por rango de fechas;
+      los hechos deben apuntar a ellas explícitamente.
+
+    columns:
+      - name: product_key
+        description: >
+          Surrogate key de la versión del producto. En las filas por defecto
+          es '-1' y '-2'.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: product_id
+        description: >
+          Clave natural del producto en AdventureWorks. Se repite entre
+          versiones del mismo producto. Es -1 y -2 en las filas por defecto.
+        data_tests:
+          - not_null
+
+      - name: product_name
+        description: Nombre del producto.
+
+      - name: product_number
+        description: Número de producto.
+
+      - name: category_name
+        description: Nombre de la categoría del producto.
+
+      - name: subcategory_name
+        description: Nombre de la subcategoría del producto.
+
+      - name: model_name
+        description: Nombre del modelo del producto.
+
+      - name: make_flag
+        description: Indica si el producto se fabrica internamente.
+
+      - name: finished_goods_flag
+        description: Indica si el producto es un bien terminado.
+
+      - name: reorder_point
+        description: Nivel de inventario que dispara una nueva orden de compra.
+
+      - name: product_modified_date
+        description: Fecha de última modificación del producto en el origen.
+
+      - name: product_valid_from
+        description: Inicio de vigencia de esta versión.
+        data_tests:
+          - not_null
+
+      - name: product_valid_to
+        description: Fin de vigencia de esta versión; nulo indica la versión actual.
+
+      - name: product_updated_at
+        description: Momento en que dbt detectó esta versión.

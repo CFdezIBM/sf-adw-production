@@ -63,6 +63,7 @@ models:
       +database: "{{ env_var('DBT_DB_ADW_GOLD') }}"
       +schema: PRODUCTION
       +materialized: table
+      +access: public
       +tags: ["gold"]
 
     platinum:
