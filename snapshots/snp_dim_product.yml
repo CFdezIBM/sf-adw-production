@@ -1,9 +1,9 @@
 snapshots:
-  - name: gld_dim_product
-    description: "Dimensión de producto Type 2. Una fila por versión de cada producto; la versión vigente tiene product_valid_to nulo."
+  - name: snp_dim_product
+    description: "Historial Type 2 de productos. Una fila por versión de cada producto; la versión vigente tiene product_valid_to nulo. Se consume a través de gld_dim_product."
     relation: ref('slv_dim_adventure_works_production__product_join_category_model')
     config:
-      alias: dim_product
+      alias: snp_dim_product
       database: "{{ env_var('DBT_DB_ADW_GOLD') }}"
       schema: PRODUCTION
       unique_key: product_id
@@ -32,13 +32,8 @@ snapshots:
     columns:
       - name: product_key
         description: "Surrogate key de la versión del producto (una por cada versión)."
-        data_tests:
-          - unique
-          - not_null
       - name: product_id
         description: "Clave natural del producto en AdventureWorks."
-        data_tests:
-          - not_null
       - name: product_name
         description: "Nombre del producto."
       - name: product_number
@@ -59,8 +54,6 @@ snapshots:
         description: "Fecha de última modificación del producto en el origen."
       - name: product_valid_from
         description: "Inicio de vigencia de esta versión."
-        data_tests:
-          - not_null
       - name: product_valid_to
         description: "Fin de vigencia de esta versión; nulo indica la versión actual."
       - name: product_updated_at
