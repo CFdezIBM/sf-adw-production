@@ -4,7 +4,6 @@ snapshots:
     relation: ref('slv_dim_adventure_works_production__product_join_category_model')
     config:
       alias: dim_product
-      access: public
       database: "{{ env_var('DBT_DB_ADW_GOLD') }}"
       schema: PRODUCTION
       unique_key: product_id
