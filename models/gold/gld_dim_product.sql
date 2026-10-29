@@ -1,11 +1,13 @@
 {{ config(
     alias='dim_product',
-    materialized='view',
-    access='public'
+    materialized='incremental',
+    unique_key='product_id',
+    incremental_strategy='merge',
+    post_hook="{{ upsert_default_rows('product_id') }}"
 ) }}
 
 select
-    product_key,
+    {{ dbt_utils.generate_surrogate_key(['product_id']) }} as product_key,
     product_id,
     product_name,
     product_number,
@@ -15,9 +17,6 @@ select
     make_flag,
     finished_goods_flag,
     reorder_point,
-    product_modified_date,
-    product_valid_from,
-    product_valid_to,
-    product_updated_at
+    product_modified_date
 
-from {{ ref('snp_dim_product') }}
+from {{ ref('slv_dim_adventure_works_production__product_join_category_model') }}
