@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: slv_dim_adventure_works_production__transaction_history_union
+    description: >
+      Historial de transacciones de inventario y producción de AdventureWorks,
+      con las tablas transaction_history y transaction_history_archive unidas
+      en una sola, como insumo de FACT_INVENTORY_MOVEMENT en Gold. Grano: una
+      fila por transaction_id. Se verificó que ningún transaction_id se repite
+      dentro de cada tabla ni entre las dos; el test unique vigila que siga así.
+
+    columns:
+      - name: transaction_id
+        description: >
+          Identificador único de la transacción (clave natural).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: product_id
+        description: >
+          Identificador del producto asociado a la transacción.
+
+      - name: reference_order_id
+        description: >
+          Identificador de la orden de referencia. Su significado depende de
+          transaction_type: S apunta a una orden de venta, P a una de compra y
+          W a una orden de trabajo.
+
+      - name: reference_order_line_id
+        description: >
+          Identificador de la línea dentro de la orden de referencia.
+
+      - name: transaction_date
+        description: >
+          Fecha y hora en que ocurrió la transacción.
+
+      - name: transaction_type
+        description: >
+          Tipo de transacción: S (venta), P (compra) o W (orden de trabajo).
+
+      - name: quantity
+        description: >
+          Cantidad de unidades involucradas en la transacción.
+
+      - name: actual_cost
+        description: >
+          Costo real asociado a la transacción.
+
+      - name: source_system
+        description: >
+          Tabla de origen de la fila: HISTORY (transaction_history) o ARCHIVE
+          (transaction_history_archive).
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.

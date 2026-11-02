@@ -1,0 +1,58 @@
+version: 2
+
+models:
+  - name: slv_dim_adventure_works_production__bill_of_materials_join_unit_measure
+    description: >
+      Lista de materiales de AdventureWorks con el nombre de la unidad de
+      medida, como insumo de FACT_BILL_OF_MATERIALS en Gold. Se usa left join
+      para no perder filas sin unidad. bomlevel se renombra a bom_level.
+      Grano: una fila por registro de la lista de materiales.
+
+    columns:
+      - name: bill_of_materials_id
+        description: >
+          Identificador único del registro de la lista de materiales (clave
+          natural).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: product_assembly_id
+        description: >
+          Identificador del producto padre (ensamble). Nulo cuando el
+          componente es de nivel superior.
+
+      - name: component_id
+        description: >
+          Identificador del producto componente que forma parte del ensamble.
+
+      - name: start_date
+        description: >
+          Fecha y hora desde la cual el componente forma parte del ensamble.
+
+      - name: end_date
+        description: >
+          Fecha y hora hasta la cual el componente formó parte del ensamble.
+          Nula cuando la relación sigue vigente.
+
+      - name: per_assembly_qty
+        description: >
+          Cantidad del componente requerida para fabricar una unidad del
+          ensamble.
+
+      - name: unit_measure_code
+        description: >
+          Código de la unidad de medida en la que se expresa la cantidad.
+
+      - name: unit_measure_name
+        description: >
+          Nombre de la unidad de medida. Nulo si el código no existe en el
+          catálogo de unidades.
+
+      - name: bom_level
+        description: >
+          Nivel del componente dentro de la jerarquía del ensamble.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.
