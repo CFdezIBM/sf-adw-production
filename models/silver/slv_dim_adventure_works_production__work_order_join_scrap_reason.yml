@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: slv_dim_adventure_works_production__work_order_join_scrap_reason
+    description: >
+      Órdenes de trabajo de AdventureWorks con el nombre de su motivo de
+      desecho, como insumo de FACT_WORK_ORDER en Gold. Se usa left join para no
+      perder las órdenes sin desecho. Grano: una fila por orden de trabajo.
+
+    columns:
+      - name: work_order_id
+        description: >
+          Identificador único de la orden de trabajo (clave natural).
+        data_tests:
+          - unique
+          - not_null
+
+      - name: product_id
+        description: >
+          Producto que se fabrica en la orden.
+
+      - name: order_qty
+        description: >
+          Unidades a fabricar en la orden.
+
+      - name: stocked_qty
+        description: >
+          Cantidad efectivamente ingresada al inventario.
+
+      - name: scrapped_qty
+        description: >
+          Cantidad desechada por defectos.
+
+      - name: start_date
+        description: >
+          Fecha de inicio de la fabricación.
+
+      - name: end_date
+        description: >
+          Fecha de fin de la fabricación. Nula mientras la orden sigue abierta.
+
+      - name: due_date
+        description: >
+          Fecha comprometida de entrega.
+
+      - name: scrap_reason_id
+        description: >
+          Identificador del motivo de desecho. Nulo cuando no se desechó nada.
+
+      - name: scrap_reason_name
+        description: >
+          Nombre del motivo de desecho. Nulo cuando la orden no tiene motivo.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación registrada para el registro.
