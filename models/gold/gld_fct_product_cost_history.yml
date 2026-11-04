@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: gld_fct_product_cost_history
+    description: >
+      Historial del costo estándar de cada producto (FACT_PRODUCT_COST_HISTORY).
+      Grano: una fila por producto y fecha de inicio de vigencia (product_id +
+      start_date). Es el modelo de referencia para el resto de las facts de
+      Production. Las llaves a las dimensiones apuntan a las filas por defecto
+      'Missing' o 'Not Applicable' cuando el id viene vacío; las facts no tienen
+      filas por defecto. Carga incremental: solo se procesan las filas con
+      modified_date igual o posterior al máximo ya cargado.
+
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - product_id
+              - start_date
+
+    columns:
+      - name: product_key
+        description: >
+          Llave del producto. Se calcula en la fact con el mismo hash que usa
+          gld_dim_product, sin join. Apunta a gld_dim_product.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('gld_dim_product')
+                field: product_key
+
+      - name: product_id
+        description: >
+          Identificador natural del producto. Forma parte del grano.
+        data_tests:
+          - not_null
+
+      - name: start_date
+        description: >
+          Fecha de inicio de vigencia de este costo. Forma parte del grano.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('adw_core', 'gld_dim_date')
+                field: date_key
+
+      - name: end_date
+        description: >
+          Fecha de fin de vigencia de este costo. Nula en el costo vigente (no
+          tiene fin todavía); los nulos no se validan contra gld_dim_date.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('adw_core', 'gld_dim_date')
+                field: date_key
+
+      - name: standard_cost
+        description: >
+          Costo estándar del producto durante el periodo. Es un valor estándar,
+          no un gasto real de una orden de trabajo.
+
+      - name: modified_date
+        description: >
+          Fecha y hora de la última modificación del registro. Se usa como marca
+          de agua para la carga incremental.
