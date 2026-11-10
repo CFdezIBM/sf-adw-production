@@ -4,3 +4,6 @@ target/
 dbt_packages/
 logs/
 dbt_internal_packages/
+
+# local delegation guide, not part of the repo
+Guia_Trabajo_Gold_Facts_ADW_Production_Actualizada.pdf
